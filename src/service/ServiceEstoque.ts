@@ -20,10 +20,9 @@ export class ServiceEstoque{
     }
     MudarQuantidade(Produto: any){
         const{id,ModalidadeId,quantidade,precoVenda} = Produto
+        const idEstoque: number = parseInt(id,10);
         if(!id || !ModalidadeId || !quantidade || !precoVenda)
             throw new Error("Informações incompletas");
-        
-
     }
 
     

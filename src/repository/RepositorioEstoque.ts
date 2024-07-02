@@ -15,9 +15,11 @@ export class RepositorioEstoque{
     
     }
     MudarQuantidade(id:number,novaQuantidade: number):void{
-        const adicionar = this.buscarId(id)
-        if(adicionar){
-            adicionar.quantidade = novaQuantidade
+        const produto = this.buscarId(id) // estudar
+        if(produto !== undefined){
+        const adicionar = this.ListaEstoque.indexOf(produto);
+        }if(produto){
+            produto.quantidade += novaQuantidade
         }
     }
     deletarQuantidade(id:number,quantidade:number){
