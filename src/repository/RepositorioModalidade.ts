@@ -29,11 +29,4 @@ export class ModalidadePaesRepositorio{
             this.listaModalidade.splice(deletarModalidade, 1);
         }
     }
-    restaurarModalidade(id: number){
-        const index = this.listaModalidade.findIndex(modalidade => modalidade.id === id);
-        if (index !== -1) {
-            const [restaurada] = this.listaModalidade.splice(index, 1);
-            this.listaModalidade.push(restaurada);
-        }
-    }
 }

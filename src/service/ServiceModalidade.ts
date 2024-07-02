@@ -1,4 +1,3 @@
-import { EstoquePaes } from "../model/EstoquePaes";
 import { ModalidadePao } from "../model/ModalidadePaes";
 import { ModalidadePaesRepositorio } from "../repository/RepositorioModalidade";
 
@@ -21,8 +20,14 @@ export class ServiceModalidade{
             return this.RepositorioModalidade.filtrarId(id);     
     }
 
-    mudarTipo(id:number,nome:string,vegano:boolean):EstoquePaes|undefined{
+    mudarTipo(modalidade:any):ModalidadePao|undefined{
+        const{id,nome,vegano} = modalidade;
+            return this.RepositorioModalidade.mudarTipo(id,nome,vegano);
         
+    }
+    deletarModalidade(id:any){
+        const deletarId: number = parseInt(id,10);
+            return this.RepositorioModalidade.deletarModalidade(id);
     }
 }
 
