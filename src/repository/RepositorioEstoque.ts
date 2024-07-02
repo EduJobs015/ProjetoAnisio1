@@ -1,7 +1,6 @@
 import { EstoquePaes } from "../model/EstoquePaes";
 
-export class 
-RepositorioEstoque{
+export class RepositorioEstoque{
     ListaEstoque: EstoquePaes[] = [];
 
 
@@ -15,7 +14,7 @@ RepositorioEstoque{
         return this.ListaEstoque.find(Produto =>Produto.id === id)
     
     }
-    adicionarQuantidade(id:number,novaQuantidade: number):void{
+    MudarQuantidade(id:number,novaQuantidade: number):void{
         const adicionar = this.buscarId(id)
         if(adicionar){
             adicionar.quantidade = novaQuantidade
