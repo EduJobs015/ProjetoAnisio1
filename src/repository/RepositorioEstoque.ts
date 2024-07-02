@@ -25,7 +25,7 @@ export class RepositorioEstoque{
             if(tirarQuantidade){
                 tirarQuantidade.quantidade -= quantidade;
                 if(tirarQuantidade.quantidade < 0) {
-                        tirarQuantidade.quantidade = 0; // Define a quantidade como zero, mas não remove o produto
+                        tirarQuantidade.quantidade = 0; // Define a quantidade como zero, mas não remove o produto, pois estava com problema de undefined
                 }
             }    
 
