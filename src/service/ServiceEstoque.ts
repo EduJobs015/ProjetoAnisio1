@@ -24,6 +24,12 @@ export class ServiceEstoque{
         if(!id || !ModalidadeId || !quantidade || !precoVenda)
             throw new Error("Informações incompletas");
     }
+    deletarQuantidade(Produto:any){
+        const{id,ModalidadeId,quantidade,precoVenda} = Produto
+        const idEstoque: number = parseInt(id,10);
+        if(!id || !ModalidadeId || !quantidade || !precoVenda)
+            throw new Error("Informações incompletas");
+    }
 
     
 

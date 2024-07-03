@@ -37,4 +37,12 @@ export function MudarQuantidade(req: Request,res: Response){
         res.status(404).json({message:error.message})
     }
 }
+export function deletarQuantidade(req: Request,res: Response){
+    try{
+        const produto = Service.deletarQuantidade(req.body);
+            res.status(200)
+    }catch(error:any){
+        res.status(404).json({message:error.message})
+    }
+}
 
