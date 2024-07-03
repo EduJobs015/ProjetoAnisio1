@@ -1,9 +1,9 @@
 import {EstoquePaes} from './EstoquePaes';
 export class Itemvenda{
-    estoquePaesId: number;
+    estoquePaesId: EstoquePaes;
     quantidade: number;
     
-    constructor(estoquePaesId: number, quantidade: number){
+    constructor(estoquePaesId: EstoquePaes, quantidade: number){
         this.estoquePaesId = estoquePaesId;
         this.quantidade = quantidade;
     }
