@@ -1,4 +1,3 @@
-
 import { ModalidadePao } from "../model/ModalidadePaes";
 
 export class ModalidadePaesRepositorio{

@@ -5,7 +5,7 @@ const Service = new ServiceModalidade();
 export function exibirModalidades(req: Request,res: Response){
     try{
         res.status(200).json(
-            Service.exibirModalidade
+            Service.exibirModalidade()
         )
 
     } catch(error: any){
@@ -15,7 +15,10 @@ export function exibirModalidades(req: Request,res: Response){
 export function InserirModalidade(req: Request,res: Response){
     try{
         const novoModalidade = Service.InserirModalidade(req.body);
-        res.status(200)
+        res.status(200).json({
+            mensagem: "Nova modalidade de pão criada",
+            produto: Service
+        })
     }catch (error: any){
         res.status(400).json({menssage :error.message})
     }

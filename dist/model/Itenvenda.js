@@ -6,11 +6,5 @@ class Itemvenda {
         this.estoquePaesId = estoquePaesId;
         this.quantidade = quantidade;
     }
-    get getestoquePaesId() {
-        return this.estoquePaesId;
-    }
-    get getquantidade() {
-        return this.quantidade;
-    }
 }
 exports.Itemvenda = Itemvenda;

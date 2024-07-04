@@ -3,9 +3,12 @@ export class ModalidadePao{
     nome: string;
     vegano: boolean
     
-    constructor(id: number, nome: string, vegano: boolean){
-        this.id = id;
+    constructor(nome: string, vegano: boolean){
+        this.id = this.criarId();
         this.nome = nome;
         this.vegano = vegano;
+    }
+    criarId():number{
+        return Date.now();
     }
 }  

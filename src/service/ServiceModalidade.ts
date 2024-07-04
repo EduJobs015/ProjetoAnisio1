@@ -2,13 +2,13 @@ import { ModalidadePao } from "../model/ModalidadePaes";
 import { ModalidadePaesRepositorio } from "../repository/RepositorioModalidade";
 
 export class ServiceModalidade{
-    RepositorioModalidade: ModalidadePaesRepositorio = new ModalidadePaesRepositorio
+    RepositorioModalidade: ModalidadePaesRepositorio = new ModalidadePaesRepositorio()
 
     InserirModalidade(Modalidade: any){
-        const{id,Nome,vegano} = Modalidade;
-            if(!id || !Nome || !vegano)
+        const{nome,vegano} = Modalidade;
+            if(!nome ||!vegano)
             throw new Error("Informações incompletas");      
-        const novoProduto = new Modalidade(id,Nome,vegano);
+        const novoProduto = new Modalidade(nome,vegano);
         this.RepositorioModalidade.inserirPao(novoProduto)
     }
 
