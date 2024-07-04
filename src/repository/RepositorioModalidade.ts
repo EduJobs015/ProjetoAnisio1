@@ -1,6 +1,6 @@
 import { ModalidadePao } from "../model/ModalidadePaes";
 
-export class ModalidadePaesRepositorio{
+export class RepositorioModalidade{
     listaModalidade : ModalidadePao[] = [];
 
     inserirPao(NovaModalidade: ModalidadePao){

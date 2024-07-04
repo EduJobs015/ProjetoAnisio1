@@ -1,8 +1,8 @@
 import { ModalidadePao } from "../model/ModalidadePaes";
-import { ModalidadePaesRepositorio } from "../repository/RepositorioModalidade";
+import { RepositorioModalidade } from "../repository/RepositorioModalidade";
 
 export class ServiceModalidade{
-    RepositorioModalidade: ModalidadePaesRepositorio = new ModalidadePaesRepositorio()
+    RepositorioModalidade: RepositorioModalidade = new RepositorioModalidade()
 
     InserirModalidade(Modalidade: any){
         const{nome,vegano} = Modalidade;

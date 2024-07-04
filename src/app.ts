@@ -1,12 +1,27 @@
 import express from "express";
-import { ExibirEstoque, MudarQuantidade, adicionarEstoque, buscarId,deletarQuantidade } from "./controller/ControlerEstoque";
-import {InserirModalidade, deletarModalidade, exibirModalidades, filtrarId, mudarTipo } from "./controller/ControleModalidade";
 
-import { Itemvenda} from "./model/Itenvenda";
+import { RepositorioEstoque } from "./repository/RepositorioEstoque";
+import { RepositorioModalidade } from "./repository/RepositorioModalidade";
+import { RepositorioVenda } from "./repository/RepositorioVendaPaes";
+
+import { ServiceEstoque } from "./service/ServiceEstoque";
+import { ServiceModalidade } from "./service/ServiceModalidade";
+import { ServiceVenda } from "./service/ServiceVenda";
+import { InserirModalidade, deletarModalidade, exibirModalidades, filtrarId, mudarTipo } from "./controller/ControleModalidade";
+
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
 app.use(express.json());
+
+
+const ModalidadePaesRepositorio = new RepositorioEstoque();
+const EstoqueRepositorio = new RepositorioEstoque();
+const VendaRepositorio  = new RepositorioVenda();
+
+const EstoqueService = new ServiceEstoque();
+const ModalidadeIdodalidadeService = new ServiceModalidade();
+const VendaService = new ServiceVenda();
 
 
 function logInfo(){
