@@ -20,8 +20,7 @@ export class ControleModalidade{
         try{
             const novoModalidade = this.Service.InserirModalidade(req.body);
             res.status(200).json({
-                mensagem: "Nova modalidade de pão criada",
-                produto: this.Service
+                mensagem: "Nova modalidade de pão criada"
             })
         }catch (error: any){
             res.status(400).json({menssage :error.message})
@@ -44,20 +43,20 @@ export class ControleModalidade{
     mudarTipo(req: Request,res: Response){
         try{
             const produto = this.Service.mudarTipo(req.body);
-                res.status(200)
-        }catch(error:any){
-            res.status(404).json({message:error.message})
+            res.status(200).send({ message: "Modalidade alterada com sucesso" });
+        } catch (error: any) {
+            res.status(404).send({ error: error.message });
         }
     }
     deletarModalidade(req: Request,res: Response){
         try{
-            const produto = this.Service.deletarModalidade(req.query.id);
-                res.status(200)
-        }catch(error:any){
-            res.status(404).json({message:error.message})
+            const produto = this.Service.deletarModalidade(req.body);
+            res.status(200).send({ message: "Modalidade deletada com sucesso" });
+        } catch (error: any) {
+            res.status(404).send({ error: error.message });
         }
-    }
 
-}
+    }
+}    
 
 

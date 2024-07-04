@@ -29,10 +29,10 @@ function logInfo() {
 
 //modalidade 
 app.post("/api/modalidade",(req,res)=> controleModalidade.InserirModalidade(req,res)); // Usar bind para garantir o contexto correto
-app.get("/api/modalidade/todas", controleModalidade.exibirModalidades.bind(controleModalidade));
-app.put("/api/modalidade", controleModalidade.mudarTipo.bind(controleModalidade));
-app.delete("/api/modalidade", controleModalidade.deletarModalidade.bind(controleModalidade));
-app.get("/api/modalidade", controleModalidade.filtrarId.bind(controleModalidade));
+app.get("/api/modalidade/todos",(req,res)=> controleModalidade.exibirModalidades(req,res));
+app.put("/api/modalidade",(req,res)=> controleModalidade.mudarTipo(req,res));
+app.delete("/api/modalidade",(req,res)=> controleModalidade.deletarModalidade(req,res));
+app.get("/api/modalidade",(req,res)=> controleModalidade.filtrarId(req,res));
 
 //Estoque
 //app.post("/api/estoque", adicionarEstoque)

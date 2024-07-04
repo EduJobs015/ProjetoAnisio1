@@ -9,9 +9,10 @@ export class ServiceModalidade{
 
     InserirModalidade(Modalidade: any){
         const{nome,vegano} = Modalidade;
-            if(!nome ||!vegano)
-            throw new Error("Informações incompletas");      
-        const novoProduto = new Modalidade(nome,vegano);
+            if(!nome || vegano === undefined)
+                throw new Error("Informações incompletas");
+            //fazer uma verificação por nome;
+        const novoProduto = new ModalidadePao(nome,vegano);
         this.RepositorioModalidade.inserirPao(novoProduto)
     }
 
@@ -19,18 +20,20 @@ export class ServiceModalidade{
         return this.RepositorioModalidade.exibirPaes();
     }
     FiltrarID(id:any):ModalidadePao|undefined{
-        const IDmodalidade: number = parseInt(id,10);
+        const IDmodalidade: number = parseInt(id);
             return this.RepositorioModalidade.filtrarId(id);     
     }
 
-    mudarTipo(modalidade:any):ModalidadePao|undefined{
+    mudarTipo(modalidade:any){
         const{id,nome,vegano} = modalidade;
-            return this.RepositorioModalidade.mudarTipo(id,nome,vegano);
+        const IDmodalidade: number = parseInt(id);
+            this.RepositorioModalidade.mudarTipo(IDmodalidade,nome,vegano);
         
     }
-    deletarModalidade(id:any){
-        const deletarId: number = parseInt(id,10);
-            return this.RepositorioModalidade.deletarModalidade(id);
+    deletarModalidade(modalidade:any){
+        const{id,nome,vegano} = modalidade
+        const deletarId: number = parseInt(id);
+            return this.RepositorioModalidade.deletarModalidade(deletarId);
     }
 }
 
