@@ -2,7 +2,10 @@ import { ModalidadePao } from "../model/ModalidadePaes";
 import { RepositorioModalidade } from "../repository/RepositorioModalidade";
 
 export class ServiceModalidade{
-    RepositorioModalidade: RepositorioModalidade = new RepositorioModalidade()
+    RepositorioModalidade: RepositorioModalidade;
+    constructor(repositorio:RepositorioModalidade){
+        this.RepositorioModalidade = repositorio;
+    }
 
     InserirModalidade(Modalidade: any){
         const{nome,vegano} = Modalidade;
