@@ -29,4 +29,9 @@ export class RepositorioModalidade{
             throw new Error("Mosalidade não encontrada")
         }
     }
+    consultarNomeDaModalidade(id: number): string | undefined {
+        const modalidade = this.listaModalidade.find(modalidade => modalidade.id === id);
+        return modalidade ? modalidade.nome : undefined;
+
+    }
 }
