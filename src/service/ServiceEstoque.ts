@@ -1,37 +1,53 @@
 import {EstoquePaes} from "../model/EstoquePaes";
 import { RepositorioEstoque } from "../repository/RepositorioEstoque";
+import { RepositorioModalidade } from "../repository/RepositorioModalidade";
 
 
     export class ServiceEstoque{
         RepositorioEstoque: RepositorioEstoque;
-        constructor(repositorio:RepositorioEstoque){
+        RepositorioModalidade: RepositorioModalidade;
+        constructor(repositorio:RepositorioEstoque, repositorio2:RepositorioModalidade){
+            this.RepositorioModalidade = repositorio2;
             this.RepositorioEstoque = repositorio;
         }
     adicionarEstoque(Produto: any){
-        const{id,ModalidadeId,quantidade,precoVenda} = Produto;
+        const{ModalidadeId,quantidade,precoVenda} = Produto;
             if(!ModalidadeId || !quantidade || !precoVenda === undefined)
-            throw new Error("Informações incompletas");      
-        const novoProduto = new Produto(ModalidadeId,quantidade,precoVenda);
+                throw new Error("Informações incompletas");
+            const idService: number = parseInt(ModalidadeId); 
+            if(!this.RepositorioModalidade.filtrarId(idService))
+                throw new Error("Modalidade id não existe")
+            // verificar no estoque se  ja existe uma mesma modalidade
+        const novoProduto = new EstoquePaes(ModalidadeId,quantidade,precoVenda);
         this.RepositorioEstoque.adicionarEstoque(novoProduto)
     }
     ExibirEstoque():EstoquePaes[]{
         return this.RepositorioEstoque.ExibirEstoque();
     }
+
     buscarId(id:any):EstoquePaes|undefined{
-        const idService: number = parseInt(id,10);
-            return this.RepositorioEstoque.buscarId(id);     
+        const idService: number = parseInt(id);
+            const estoque = this.RepositorioEstoque.buscarId(idService);
+        if(estoque){
+            return estoque;
+        }else{
+            throw new Error("Id não encontrado")
+        }     
+
     }
     MudarQuantidade(Produto: any){
-        const{id,ModalidadeId,quantidade,precoVenda} = Produto
-        const idEstoque: number = parseInt(id,10);
-        if(!ModalidadeId || !quantidade || !precoVenda)
+        const{id,ModalidadeId,quantidade} = Produto
+        const idEstoque: number = parseInt(id);
+        if(!ModalidadeId || !quantidade)
             throw new Error("Informações incompletas");
+        this.RepositorioEstoque.MudarQuantidade(idEstoque,quantidade);
     }
     deletarQuantidade(Produto:any){
         const{id,ModalidadeId,quantidade,precoVenda} = Produto
-        const idEstoque: number = parseInt(id,10);
+        const idEstoque: number = parseInt(id);
         if(!id || !ModalidadeId || !quantidade || !precoVenda)
             throw new Error("Informações incompletas");
+        this.RepositorioEstoque.deletarQuantidade(idEstoque,quantidade);
     }
 
     

@@ -18,7 +18,8 @@ export class ControleEstoque{
     }
     ExibirEstoque(req: Request,res: Response){
         try{
-            res.status(200).json(this.Service.ExibirEstoque)
+            const Resposta = this.Service.ExibirEstoque();
+            res.status(200).json(Resposta)
         }catch (error: any){
             res.status(400).json({menssage :error.message})
         }
@@ -28,10 +29,8 @@ export class ControleEstoque{
             const produto = this.Service.buscarId(req.query.id);
             if(produto){
                 res.status(200).json({
-                    produto : produto
+                    produto
                 })
-            }else{
-                res.status(400);
             }
         }catch(error:any){
             res.status(404).json({message:error.message})
@@ -39,8 +38,11 @@ export class ControleEstoque{
     }
     MudarQuantidade(req: Request,res: Response){
         try{
-            const produto = this.Service.MudarQuantidade(req.body);
-                res.status(200)
+                this.Service.MudarQuantidade(req.body);
+                res.status(200).json({
+                    menssage: "Quantidade alterada com sucesso ! "
+                    
+                })
         }catch(error:any){
             res.status(404).json({message:error.message})
         }
@@ -48,7 +50,10 @@ export class ControleEstoque{
     deletarQuantidade(req: Request,res: Response){
         try{
             const produto = this.Service.deletarQuantidade(req.body);
-                res.status(200)
+                res.status(200).json({
+                    menssage: "Quantidade deletada com sucesso ! "
+                    
+                })
         }catch(error:any){
             res.status(404).json({message:error.message})
         }

@@ -2,12 +2,15 @@ export class vendaPaes{
     id: number;
     cpfCliente: number;
     valorTotal: number;
-    itensComprados: string;
+    itensComprados: {estoquePaesID: number, quantidade: number}[];;
         
-    constructor(id: number, cpfCliente: number, valorTotal: number,itensComprados: string){
-        this.id = id;
+    constructor(cpfCliente: number,itensComprados: {estoquePaesID: number, quantidade: number}[]){
+        this.id = this.criarId();
         this.cpfCliente = cpfCliente;
-        this.valorTotal = valorTotal;
+        this.valorTotal = 0;
         this.itensComprados = itensComprados;
+    }
+    criarId():number{
+        return Date.now();
     }
 }

@@ -1,4 +1,3 @@
-import { error } from "console";
 import { ModalidadePao } from "../model/ModalidadePaes";
 
 export class RepositorioModalidade{

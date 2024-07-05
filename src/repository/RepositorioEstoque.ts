@@ -15,23 +15,21 @@ export class RepositorioEstoque{
     
     }
     MudarQuantidade(id:number,novaQuantidade: number):void{
-        const produto = this.buscarId(id) // estudar
-        if(produto !== undefined){
-        const adicionar = this.ListaEstoque.indexOf(produto);
-        }if(produto){
-            produto.quantidade += novaQuantidade
+        const index = this.ListaEstoque.findIndex(Estoque => Estoque.id === id);
+        if(index!== -1){
+            this.ListaEstoque[index].quantidade = novaQuantidade + this.ListaEstoque[index].quantidade
+        }else{
+            throw new Error("Produto não encontrado")
         }
     }
     deletarQuantidade(id:number,quantidade:number){
-        const tirarQuantidade = this.ListaEstoque.find(Produto =>Produto.id === id)
-            if(tirarQuantidade){
-                tirarQuantidade.quantidade -= quantidade;
-                if(tirarQuantidade.quantidade < 0) {
-                        tirarQuantidade.quantidade = 0; // Define a quantidade como zero, mas não remove o produto, pois estava com problema de undefined
-                }
-            }    
+        const index = this.ListaEstoque.findIndex(Estoque => Estoque.id === id);
+        if(index!== -1){
+            this.ListaEstoque[index].quantidade =  this.ListaEstoque[index].quantidade - quantidade
+        }else{
+            throw new Error("Produto não encontrado")
+        }
+    }    
 
 
     }
-
-}

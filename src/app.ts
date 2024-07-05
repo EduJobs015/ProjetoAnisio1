@@ -18,7 +18,7 @@ const ModalidadePaesRepositorio = new RepositorioModalidade();
 const EstoqueRepositorio = new RepositorioEstoque();
 const VendaRepositorio = new RepositorioVenda();
 
-const EstoqueService = new ServiceEstoque(EstoqueRepositorio); // Certifique-se de que o serviço aceita o repositório
+const EstoqueService = new ServiceEstoque(EstoqueRepositorio,ModalidadePaesRepositorio); // Certifique-se de que o serviço aceita o repositório
 const ModalidadeService = new ServiceModalidade(ModalidadePaesRepositorio);
 //const VendaService = new ServiceVenda(VendaRepositorio);
 
