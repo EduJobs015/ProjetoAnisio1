@@ -6,16 +6,6 @@ export class ControleModalidade{
     constructor(Service:ServiceModalidade){
         this.Service = Service;
     }
-    exibirModalidades(req: Request,res: Response){
-        try{
-            res.status(200).json(
-                this.Service.exibirModalidade()
-            )
-    
-        } catch(error: any){
-            res.status(400).json({message:error})
-        }
-    }
     InserirModalidade(req: Request,res: Response){
         try{
             const novoModalidade = this.Service.InserirModalidade(req.body);
@@ -26,6 +16,16 @@ export class ControleModalidade{
             res.status(400).json({menssage :error.message})
         }
     
+    }
+    exibirModalidades(req: Request,res: Response){
+        try{
+            res.status(200).json(
+                this.Service.exibirModalidade()
+            )
+    
+        } catch(error: any){
+            res.status(400).json({message:error})
+        }
     }
     
     filtrarId(req: Request,res: Response){

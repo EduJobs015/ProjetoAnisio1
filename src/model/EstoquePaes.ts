@@ -5,9 +5,12 @@ export class EstoquePaes{
     precoVenda: number;
         
     constructor(id: number, ModalidadeId: number, quantidade: number,itensComprados: number, precoVenda: number){
-        this.id = id;
+        this.id = this.criarId();
         this.ModalidadeId = ModalidadeId;
         this.quantidade = quantidade;
         this.precoVenda = precoVenda;
+    }
+    criarId():number{
+        return Date.now();
     }   
 }

@@ -1,14 +1,17 @@
 import {EstoquePaes} from "../model/EstoquePaes";
 import { RepositorioEstoque } from "../repository/RepositorioEstoque";
 
-export class ServiceEstoque{
-    RepositorioEstoque: RepositorioEstoque = new RepositorioEstoque();
-    
+
+    export class ServiceEstoque{
+        RepositorioEstoque: RepositorioEstoque;
+        constructor(repositorio:RepositorioEstoque){
+            this.RepositorioEstoque = repositorio;
+        }
     adicionarEstoque(Produto: any){
         const{id,ModalidadeId,quantidade,precoVenda} = Produto;
-            if(!id || !ModalidadeId || !quantidade || !precoVenda)
+            if(!ModalidadeId || !quantidade || !precoVenda === undefined)
             throw new Error("Informações incompletas");      
-        const novoProduto = new Produto(id,ModalidadeId,quantidade,precoVenda);
+        const novoProduto = new Produto(ModalidadeId,quantidade,precoVenda);
         this.RepositorioEstoque.adicionarEstoque(novoProduto)
     }
     ExibirEstoque():EstoquePaes[]{
@@ -21,7 +24,7 @@ export class ServiceEstoque{
     MudarQuantidade(Produto: any){
         const{id,ModalidadeId,quantidade,precoVenda} = Produto
         const idEstoque: number = parseInt(id,10);
-        if(!id || !ModalidadeId || !quantidade || !precoVenda)
+        if(!ModalidadeId || !quantidade || !precoVenda)
             throw new Error("Informações incompletas");
     }
     deletarQuantidade(Produto:any){
