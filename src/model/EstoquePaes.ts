@@ -12,5 +12,5 @@ export class EstoquePaes{
     }
     criarId():number{
         return Date.now();
-    }   
+    }
 }

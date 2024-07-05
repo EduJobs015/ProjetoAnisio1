@@ -11,4 +11,8 @@ export class ModalidadePao{
     criarId():number{
         return Date.now();
     }
+
+    getNome():string{
+        return this.nome
+    }
 }  
