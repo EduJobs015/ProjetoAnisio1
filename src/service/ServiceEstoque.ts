@@ -11,14 +11,15 @@ import { RepositorioModalidade } from "../repository/RepositorioModalidade";
             this.RepositorioEstoque = repositorio;
         }
     adicionarEstoque(Produto: any){
-        const{ModalidadeId,quantidade,precoVenda} = Produto;
-            if(!ModalidadeId || !quantidade || !precoVenda === undefined)
+        const{modalidadeID,quantidade,precoVenda} = Produto;
+            if(!modalidadeID || !quantidade || !precoVenda === undefined)
                 throw new Error("Informações incompletas");
-            const idService: number = parseInt(ModalidadeId); 
+            const idService: number = parseInt(modalidadeID); 
             if(!this.RepositorioModalidade.filtrarId(idService))
                 throw new Error("Modalidade id não existe")
             // verificar no estoque se  ja existe uma mesma modalidade
-        const novoProduto = new EstoquePaes(ModalidadeId,quantidade,precoVenda);
+            const number: number = parseInt(precoVenda);
+        const novoProduto = new EstoquePaes(modalidadeID,quantidade,number);
         this.RepositorioEstoque.adicionarEstoque(novoProduto)
     }
     ExibirEstoque():EstoquePaes[]{
