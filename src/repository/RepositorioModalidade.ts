@@ -31,7 +31,7 @@ export class RepositorioModalidade{
     }
     consultarNomeDaModalidade(id: number): string | undefined {
         const modalidade = this.listaModalidade.find(modalidade => modalidade.id === id);
-        return modalidade ? modalidade.nome : undefined;
+        return modalidade?.getNome();
 
     }
 }

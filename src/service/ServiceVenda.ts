@@ -22,9 +22,8 @@ export class ServiceVenda {
         if (!cpfCliente || !itensComprados || !Array.isArray(itensComprados)) {
             throw new Error("Informações incompletas");
         }
-
-        let resumoItens: Itemvenda[] = [];
         let total = 0;
+        let resumoItens: Itemvenda[] = [];
 
         for (const item of itensComprados) {
             const estoqueProduto = this.repositorioEstoque.buscarId(item.estoquePaesId);
