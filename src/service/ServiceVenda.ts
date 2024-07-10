@@ -42,7 +42,7 @@ export class ServiceVenda {
             estoqueProduto.quantidade -= quantidadePedida;
             total += quantidadePedida * estoqueProduto.precoVenda;
 
-            const nomeItemValido = nomeItem || "Nome Indisponível";
+            const nomeItemValido = nomeItem;
 
             // Construindo cada objeto Itemvenda e adicionando a resumoItens
             const itemVenda: Itemvenda = {
@@ -55,7 +55,7 @@ export class ServiceVenda {
         }
 
         // Criando a nova venda com os dados coletados
-        const novaVenda = new vendaPaes(cpfCliente, total, resumoItens);
+        const novaVenda = new vendaPaes(cpfCliente,total,resumoItens);
 
         // Salvando a nova venda no repositório de vendas
         this.repositorioVenda.CadastrarVenda(novaVenda);
@@ -63,8 +63,8 @@ export class ServiceVenda {
         return novaVenda;
     }
 
-    buscarItemEstoque(item: any): EstoquePaes | undefined {
-        const estoque = this.repositorioEstoque.buscarId(item.estoquePaesId);
+    buscarItemEstoque(item: any): vendaPaes | undefined {
+        const estoque = this.repositorioVenda.filtrarId(item.id);
         if (!estoque) {
             throw new Error(`Item com ID ${item.estoquePaesId} não encontrado no estoque`);
         }
@@ -73,5 +73,14 @@ export class ServiceVenda {
 
     encontrarId(id: number): vendaPaes | undefined {
         return this.repositorioVenda.EncontarId(id);
+    }
+
+    exibirvenda(){
+        return this.repositorioVenda.ListaVenda;
+    }
+
+    FiltrarID(id:any):vendaPaes|undefined{
+        const IDvendas: number = parseInt(id);
+            return this.repositorioVenda.filtrarId(id);     
     }
 }

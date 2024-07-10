@@ -29,7 +29,12 @@ export class RepositorioEstoque{
         }else{
             throw new Error("Produto não encontrado")
         }
-    }    
+    } 
+    consultarNomeDaEstoque(id: any): string | undefined {
+        const modalidade = this.ListaEstoque.find(modalidade => modalidade.id === id);
+        return;
+
+    }   
 
 
     }

@@ -24,35 +24,15 @@ export class VendaController {
         }
     }
 
-    public buscarItemEstoque(req: Request, res: Response){
-        try {
-            const { estoquePaesId } = req.params;
-
-            if (!estoquePaesId) {
-                res.status(400).json({ error: 'ID do estoque não fornecido' });
-            }
-
-            const estoque = this.serviceVenda.buscarItemEstoque({ estoquePaesId: parseInt(estoquePaesId) });
-
-            if (estoque) {
-                res.json(estoque);
-            } else {
-                res.status(404).json({ error: 'Item do estoque não encontrado' });
-            }
-        } catch (error) {
-            res.status(500).json({ error: error || 'Erro ao buscar item do estoque' });
-        }
-    }
-
     public encontrarVendaPorId(req: Request, res: Response){
         try {
-            const { id } = req.params;
+            const id  = this.serviceVenda.exibirvenda();
 
             if (!id) {
                 res.status(400).json({ error: 'ID da venda não fornecido' });
             }
 
-            const vendaEncontrada = this.serviceVenda.encontrarId(parseInt(id));
+            const vendaEncontrada = this.serviceVenda.FiltrarID(id);
 
             if (vendaEncontrada) {
                 res.json(vendaEncontrada);

@@ -26,10 +26,10 @@ export class RepositorioModalidade{
         if (deletarModalidade !== -1){
             this.listaModalidade.splice(deletarModalidade, 1);
         }else{
-            throw new Error("Mosalidade não encontrada")
+            throw new Error("Modalidade não encontrada")
         }
     }
-    consultarNomeDaModalidade(id: number): string | undefined {
+    consultarNomeDaModalidade(id: any): string | undefined {
         const modalidade = this.listaModalidade.find(modalidade => modalidade.id === id);
         return modalidade?.getNome();
 

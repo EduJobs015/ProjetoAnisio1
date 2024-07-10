@@ -53,7 +53,7 @@ app.delete("/api/estoque", (req,res)=>ControleEstoques.deletarQuantidade(req,res
 
 //Venda
 app.post("/api/venda",(req,res)=>ControleVendas.cadastrarVenda(req,res));
-app.get("/api/venda",(req,res)=>ControleVendas.buscarItemEstoque(req,res));
+app.get("/api/venda",(req,res)=>ControleVendas.encontrarVendaPorId(req,res));
 
 //vendas
 
