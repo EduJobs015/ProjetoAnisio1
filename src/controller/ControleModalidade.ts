@@ -40,6 +40,18 @@ export class ControleModalidade{
             res.status(404).json({message:error.message})
         }
     }
+    buscarId(req: Request,res: Response){
+        try{
+            const produto = this.Service.buscarId(req.query.id);
+            if(produto){
+                res.status(200).json({
+                    produto
+                })
+            }
+        }catch(error:any){
+            res.status(404).json({message:error.message})
+        }
+    }
     mudarTipo(req: Request,res: Response){
         try{
             const produto = this.Service.mudarTipo(req.body);

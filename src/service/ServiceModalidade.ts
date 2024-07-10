@@ -23,6 +23,15 @@ export class ServiceModalidade{
         const IDmodalidade: number = parseInt(id);
             return this.RepositorioModalidade.filtrarId(id);     
     }
+    buscarId(id:any):ModalidadePao|undefined{
+        const iDmodalidade: number = parseInt(id);
+            const estoque = this.RepositorioModalidade.buscarId(iDmodalidade);
+        if(estoque){
+            return estoque;
+        }else{
+            throw new Error("Id não encontrado")
+        }
+    } 
 
     mudarTipo(modalidade:any){
         const{id,nome,vegano} = modalidade;

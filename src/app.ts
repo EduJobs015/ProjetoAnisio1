@@ -42,7 +42,7 @@ app.post("/api/modalidade",(req,res)=> controleModalidade.InserirModalidade(req,
 app.get("/api/modalidade/todos",(req,res)=> controleModalidade.exibirModalidades(req,res));
 app.put("/api/modalidade",(req,res)=> controleModalidade.mudarTipo(req,res));
 app.delete("/api/modalidade",(req,res)=> controleModalidade.deletarModalidade(req,res));
-app.get("/api/modalidade",(req,res)=> controleModalidade.filtrarId(req,res));
+app.get("/api/modalidade",(req,res)=> controleModalidade.buscarId(req,res));
 
 //Estoque
 app.post("/api/estoque",(req,res)=>ControleEstoques.adicionarEstoque(req,res));

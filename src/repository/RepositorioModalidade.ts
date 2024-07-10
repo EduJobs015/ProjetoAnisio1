@@ -12,6 +12,10 @@ export class RepositorioModalidade{
     filtrarId(id : number):ModalidadePao|undefined{
         return this.listaModalidade.find(produto => produto.id === id);    
     }
+    buscarId(id:number):ModalidadePao|undefined{
+        return this.listaModalidade.find(Produto =>Produto.id === id)
+    
+    }
     mudarTipo(id: number,Nome: string, vegano: boolean){
         const index = this.listaModalidade.findIndex(Modalidade => Modalidade.id === id);
         if(index!== -1){
