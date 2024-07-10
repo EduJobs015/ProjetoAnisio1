@@ -8,7 +8,7 @@ export class VendaController {
         this.serviceVenda = serviceVenda;
     }
 
-    public cadastrarVenda(req: Request, res: Response){
+    cadastrarVenda(req: Request, res: Response){
         try {
             const { cpfCliente, itensComprados } = req.body;
 
@@ -24,24 +24,16 @@ export class VendaController {
         }
     }
 
-    public encontrarVendaPorId(req: Request, res: Response){
-        try {
-            const id  = this.serviceVenda.FiltrarID(req.query.id);
-
-            if (!id) {
-                res.status(400).json({ error: 'ID da venda não fornecido' });
-            }
-
-            const vendaEncontrada = this.serviceVenda.FiltrarID(id);
-
-            if (vendaEncontrada) {
+    buscarId(req: Request,res: Response){
+        try{
+            const venda = this.serviceVenda.BuscarId(req.query.id);
+            if(venda){
                 res.status(200).json({
-                    vendaEncontrada
-                });
+                    venda
+                })
             }
-        } catch(error: any){
-            res.status(404).json({ error: 'Venda não encontrada' });
-
+        }catch(error:any){
+            res.status(404).json({message:error.message})
         }
     }
 }

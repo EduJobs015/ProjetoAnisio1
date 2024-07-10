@@ -4,6 +4,7 @@ import { vendaPaes } from "../model/vandaPaes";
 import { Itemvenda } from "../model/Itemvenda";
 import { RepositorioModalidade } from "../repository/RepositorioModalidade";
 import { EstoquePaes } from "../model/EstoquePaes";
+import { ModalidadePao } from "../model/ModalidadePaes";
 
 export class ServiceVenda {
     repositorioEstoque: RepositorioEstoque;
@@ -22,8 +23,8 @@ export class ServiceVenda {
         if (!cpfCliente || !itensComprados || !Array.isArray(itensComprados)) {
             throw new Error("Informações incompletas");
         }
-        let total = 0;
         let resumoItens: Itemvenda[] = [];
+        let total = 0;
 
         for (const item of itensComprados) {
             const estoqueProduto = this.repositorioEstoque.buscarId(item.estoquePaesId);
@@ -36,13 +37,14 @@ export class ServiceVenda {
                 throw new Error(`Quantidade solicitada ultrapassa a quantidade em estoque para o produto ${estoqueProduto.id}`);
             }
 
-            const nomeItem = this.repositorioModalidade.consultarNomeDaModalidade(estoqueProduto.id);
+            const nomeModalidade = this.repositorioModalidade.consultarNomeDaModalidade(estoqueProduto.ModalidadeId);
 
             const quantidadePedida = item.quantidade;
             estoqueProduto.quantidade -= quantidadePedida;
-            total += quantidadePedida * estoqueProduto.precoVenda;
-
-            const nomeItemValido = nomeItem;
+            const precoTotalItem = quantidadePedida * estoqueProduto.precoVenda;
+            total += precoTotalItem;
+            
+            const nomeItemValido = nomeModalidade;
 
             // Construindo cada objeto Itemvenda e adicionando a resumoItens
             const itemVenda: Itemvenda = {
@@ -63,8 +65,13 @@ export class ServiceVenda {
         return novaVenda;
     }
 
-    FiltrarID(id:any):vendaPaes|undefined{
-        const IDvendas: number = parseInt(id);
-            return this.repositorioVenda.filtrarId(id);     
+    BuscarId(id:any):vendaPaes|undefined{
+        const idVendas: number = parseInt(id);
+            const estoque = this.repositorioVenda.BuscarId(idVendas);
+        if(estoque){
+            return estoque;
+        }else{
+            throw new Error("Id não encontrado")
+        }
     }
 }

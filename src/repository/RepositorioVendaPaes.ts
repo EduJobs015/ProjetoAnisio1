@@ -9,7 +9,7 @@ export class RepositorioVenda{
         this.ListaVenda.push(Produto);
             return this.ListaVenda;
     }
-    filtrarId(id : number):vendaPaes|undefined{
+    BuscarId(id : number):vendaPaes|undefined{
         return this.ListaVenda.find(produto => produto.id === id);    
     }
 

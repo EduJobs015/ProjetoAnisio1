@@ -10,7 +10,7 @@ export class vendaPaes{
         this.id = this.criarId();
         this.cpfCliente = cpfCliente;
         this.itensComprados = itensComprados;
-        this.valorTotal = 0;
+        this.valorTotal = valorTotal;
     }
     criarId():number{
         return Date.now();
