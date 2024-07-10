@@ -26,7 +26,7 @@ export class VendaController {
 
     public encontrarVendaPorId(req: Request, res: Response){
         try {
-            const id  = this.serviceVenda.exibirvenda();
+            const id  = this.serviceVenda.FiltrarID(req.query.id);
 
             if (!id) {
                 res.status(400).json({ error: 'ID da venda não fornecido' });
@@ -35,12 +35,13 @@ export class VendaController {
             const vendaEncontrada = this.serviceVenda.FiltrarID(id);
 
             if (vendaEncontrada) {
-                res.json(vendaEncontrada);
-            } else {
-                res.status(404).json({ error: 'Venda não encontrada' });
+                res.status(200).json({
+                    vendaEncontrada
+                });
             }
-        } catch (error) {
-            res.status(500).json({ error: error || 'Erro ao buscar venda por ID' });
+        } catch(error: any){
+            res.status(404).json({ error: 'Venda não encontrada' });
+
         }
     }
 }

@@ -63,22 +63,6 @@ export class ServiceVenda {
         return novaVenda;
     }
 
-    buscarItemEstoque(item: any): vendaPaes | undefined {
-        const estoque = this.repositorioVenda.filtrarId(item.id);
-        if (!estoque) {
-            throw new Error(`Item com ID ${item.estoquePaesId} não encontrado no estoque`);
-        }
-        return estoque;
-    }
-
-    encontrarId(id: number): vendaPaes | undefined {
-        return this.repositorioVenda.EncontarId(id);
-    }
-
-    exibirvenda(){
-        return this.repositorioVenda.ListaVenda;
-    }
-
     FiltrarID(id:any):vendaPaes|undefined{
         const IDvendas: number = parseInt(id);
             return this.repositorioVenda.filtrarId(id);     

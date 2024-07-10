@@ -9,9 +9,6 @@ export class RepositorioVenda{
         this.ListaVenda.push(Produto);
             return this.ListaVenda;
     }
-    EncontarId(id:number):vendaPaes|undefined{
-            return this.ListaVenda.find(venda => venda.id === id); 
-    }
     filtrarId(id : number):vendaPaes|undefined{
         return this.ListaVenda.find(produto => produto.id === id);    
     }
